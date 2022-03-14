@@ -25,6 +25,7 @@ const Clock: React.FC = () => {
             container.appendChild(renderer.domElement)
 
             const controls = new OrbitControls(camera, renderer.domElement);
+            // controls.target.set(5, 2, 5);
             controls.update();
             controls.enableDamping = true;
             // controls.minDistance = 40;
