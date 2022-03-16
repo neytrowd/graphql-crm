@@ -15,8 +15,13 @@ import ProjectDetails from "./pages/project-details";
 import Team from "./pages/team";
 import Employee from "./pages/employee";
 import theme from "./assets/theme";
+import {useQuery} from "@apollo/client";
+import {ALL_EMPLOYEE} from "./Queries";
 
 function App() {
+    const {data} = useQuery(ALL_EMPLOYEE)
+
+    console.log(data)
 
     return (
         <ThemeProvider theme={theme}>
