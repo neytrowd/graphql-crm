@@ -1,6 +1,6 @@
 const pino = require('pino');
 
-const logger = pino({
+const loggerService = pino({
     transport: {
         target: 'pino-pretty',
         options: {
@@ -9,14 +9,14 @@ const logger = pino({
     }
 })
 
-const Logger = {
+const logger = {
     info(msg) {
-        logger.info(msg)
+        loggerService.info(msg)
     },
 
     error(msg) {
-        logger.error(msg)
+        loggerService.error(msg)
     }
 }
 
-module.exports = Logger;
+module.exports = logger;

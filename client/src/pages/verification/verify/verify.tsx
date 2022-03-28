@@ -1,5 +1,5 @@
 import React from "react";
-import styleRegister from "./styleRegister";
+import styleVerify from "./styleVerify";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -16,17 +16,17 @@ import {IRegister} from "../../../types";
 
 const initialState = {
     firstname: '',
-    email: '',
+    jobDesc: '',
+    email: 'neytrowd@gmail.com',
     password: '',
-    confirmPassword: ''
 }
 
-const Register: React.FC = () => {
-    const classes = styleRegister();
+const Verify: React.FC = () => {
+    const classes = styleVerify();
     const navigate = useNavigate();
     const [signUp] = useMutation(SIGN_UP)
 
-    const register = async (data: IRegister) => {
+    const verify = async (data: IRegister) => {
         let res = await signUp({
             variables: {data}
         })
@@ -40,7 +40,7 @@ const Register: React.FC = () => {
     }: { setSubmitting: Function, resetForm: Function }) => {
         try {
             const {confirmPassword, ...data} = value
-            register(data)
+            verify(data)
             setSubmitting(false)
             resetForm()
         } catch (err: unknown) {
@@ -52,14 +52,14 @@ const Register: React.FC = () => {
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <Avatar className={classes.avatar} src={Logo}/>
-                <Typography component="h1" variant="h5">Register</Typography>
+                <Typography component="h1" variant="h5">Verification</Typography>
                 <Formik
                     initialValues={initialState} onSubmit={onSubmit}
                     validationSchema={Yup.object({
                         firstname: Yup.string().required('Name is required'),
+                        jobDesc: Yup.string().required('Job title is required'),
                         email: Yup.string().email('Invalid email address').required('Email is required'),
                         password: Yup.string().min(5, 'Must be least 5 symbols').required('Password is required'),
-                        confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Password must match')
                     })}
                 >
                     <Form>
@@ -69,23 +69,23 @@ const Register: React.FC = () => {
                             autoFocus margin="normal"
                         />
                         <Field
+                            component={TextField} name="jobDesc"
+                            variant="outlined" required fullWidth label="Job title"
+                            margin="normal"
+                        />
+                        <Field
                             component={TextField} name="email"
                             variant="outlined" required fullWidth label="Email Address"
-                            margin="normal"
+                            margin="normal" disabled={true}
                         />
                         <Field
                             component={TextField} name="password"
                             variant="outlined" required fullWidth label="Password"
                             type="password" margin="normal"
                         />
-                        <Field
-                            component={TextField} name="confirmPassword"
-                            variant="outlined" required fullWidth label="Confirm Password"
-                            type="password" margin="normal"
-                        />
                         <Box marginTop={3} marginBottom={2}>
                             <Button type="submit" fullWidth variant="contained" color="primary">
-                                Register
+                                Verify account
                             </Button>
                         </Box>
                     </Form>
@@ -98,4 +98,4 @@ const Register: React.FC = () => {
     );
 }
 
-export default Register;
+export default Verify;

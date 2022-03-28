@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import {Route, Routes} from 'react-router-dom'
-import {ThemeProvider, useTheme} from "@mui/material";
+import {ThemeProvider} from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import Auth from "./components/auth";
 import Layout from "./components/layout";
@@ -15,13 +15,9 @@ import ProjectDetails from "./pages/project-details";
 import Team from "./pages/team";
 import Employee from "./pages/employee";
 import theme from "./assets/theme";
-import {useQuery} from "@apollo/client";
-import {ALL_EMPLOYEE} from "./Queries";
+import Verification from "./pages/verification";
 
 function App() {
-    const {data} = useQuery(ALL_EMPLOYEE)
-
-    console.log(data)
 
     return (
         <ThemeProvider theme={theme}>
@@ -33,6 +29,7 @@ function App() {
                 <Route path={'auth'} element={<Auth/>}>
                     <Route path={'signIn'} element={<SignIn/>}/>
                     <Route path={'signUp'} element={<SignUp/>}/>
+                    <Route path={'verify/:id'} element={<Verification/>}/>
                 </Route>
 
                 <Route path={'app'} element={<Layout/>}>

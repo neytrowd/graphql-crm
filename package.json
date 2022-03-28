@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "concurrently \"npm i\" \"npm i --prefix client\"",
+    "install": "npm install & npm install --prefix client",
     "client": "npm run start --prefix client",
     "server": "nodemon src/server.js",
     "start": "concurrently \"npm run client\" \"npm run server\""
@@ -21,10 +21,21 @@
   },
   "homepage": "https://github.com/neytrowd/graphql-crm#readme",
   "dependencies": {
+    "@graphql-tools/load-files": "^6.5.3",
+    "@graphql-tools/merge": "^8.2.4",
     "apollo-server": "^3.6.4",
+    "apollo-server-core": "^3.6.4",
+    "apollo-server-express": "^3.6.4",
+    "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
     "graphql": "^16.3.0",
+    "handlebars": "^4.7.7",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.6",
+    "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "pino": "^7.8.1",
     "pino-pretty": "^7.5.3"
