@@ -2,7 +2,7 @@ import {makeStyles} from "@mui/styles";
 
 const styleRegister = makeStyles((theme) => ({
     paper: {
-        marginTop: '80px',
+        marginTop: '50px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

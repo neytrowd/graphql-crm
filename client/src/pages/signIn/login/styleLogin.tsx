@@ -3,7 +3,7 @@ import {makeStyles} from "@mui/styles";
 const styleLogin = makeStyles((theme) => ({
     paper: {
         textAlign: 'center',
-        marginTop: '150px'
+        marginTop: '100px'
     },
     avatar: {
         margin: 'auto',

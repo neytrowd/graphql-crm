@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Container, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import Clock from "../../../components/clock";
+import {NavLink} from 'react-router-dom'
 
 const Description: React.FC = () => {
 
@@ -22,7 +23,11 @@ const Description: React.FC = () => {
                                 platform.
                                 Powerful, affordable & easy to use software for your business.
                             </Typography>
-                            <Button variant={'contained'} size={'large'}>Get Started</Button>
+                            <Button
+                                variant={'contained'} size={'large'}
+                                component={NavLink}
+                                to={'/auth/signIn'}
+                            >Get Started</Button>
                         </Box>
 
                         <Box flex={1} style={{transform: 'translateY(-50px)'}}>

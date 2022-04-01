@@ -16,6 +16,8 @@ import Team from "./pages/team";
 import Employee from "./pages/employee";
 import theme from "./assets/theme";
 import Verification from "./pages/verification";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -29,7 +31,7 @@ function App() {
                 <Route path={'auth'} element={<Auth/>}>
                     <Route path={'signIn'} element={<SignIn/>}/>
                     <Route path={'signUp'} element={<SignUp/>}/>
-                    <Route path={'verify/:id'} element={<Verification/>}/>
+                    <Route path={'verify/:userId'} element={<Verification/>}/>
                 </Route>
 
                 <Route path={'app'} element={<Layout/>}>
@@ -40,6 +42,10 @@ function App() {
                     <Route path={'team/employee/*'} element={<Employee/>}/>
                 </Route>
             </Routes>
+
+            <ToastContainer
+                position={'top-right'}
+            />
         </ThemeProvider>
     );
 }

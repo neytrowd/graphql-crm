@@ -13,12 +13,26 @@ const verificationType = gql`
         success: Boolean!
         message: String!
     }
+    
+    type LoadVerificationData{
+        email: String!
+    }
+    
+    type LoadVerificationDataResponse implements MutationResponse{
+        code: Int!
+        success: Boolean!
+        message: String!
+        data: LoadVerificationData
+    }
 
     input VerifyAccount{
-        lastname: String!
-        jobTitle: String!
+        jobDesc: String!
         email: String!
         password: String!
+    }
+    
+    type Query{
+        loadVerificationData(userId: String): LoadVerificationDataResponse!
     }
 
     type Mutation{

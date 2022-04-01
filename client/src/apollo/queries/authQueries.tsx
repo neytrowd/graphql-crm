@@ -13,8 +13,22 @@ export const SIGN_IN = gql`
     mutation SignUp($data: User!){
         signIn(data: $data){
             ...Response
-            token
-            userId
+            data {
+                token
+                userId
+            }
+        }
+    }${MUTATION_RESPONSE}
+`
+
+export const GOOGLE_SIGN_IN = gql`
+    mutation GoogleSignIn($data: GoogleUser!){
+        googleSignIn(data: $data){
+            ...Response,
+            data {
+                token
+                userId
+            }
         }
     }${MUTATION_RESPONSE}
 `
