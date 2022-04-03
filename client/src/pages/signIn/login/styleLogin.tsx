@@ -3,14 +3,16 @@ import {makeStyles} from "@mui/styles";
 const styleLogin = makeStyles((theme) => ({
     paper: {
         textAlign: 'center',
-        marginTop: '100px'
+        margin: '60px 0 30px 0'
     },
     avatar: {
         margin: 'auto',
         marginBottom: '15px',
     },
-    register: {
-        color: '#7d7979'
+    captcha:{
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '20px 0'
     }
 }));
 

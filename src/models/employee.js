@@ -4,7 +4,7 @@ const EmployeeSchema = new Schema({
     firstname: {type: String, required: true},
     email: {type: String, required: true, unique: true},
     emailVerified: {type: Boolean, default: false},
-    password: {type: String, required: true},
+    password: {type: String, required: true, default: ''},
     position: {type: String, default: ''},
     jobDesc: {type: String, default: ''},
     status: {type: Boolean, default: true},

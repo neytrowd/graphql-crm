@@ -9,7 +9,8 @@ const ListItem: React.FC = () => {
         <Grid item xs={4} sm={4} md={4} lg={3}>
             <Card>
                 <Box
-                    component={NavLink} to={'/app/team/employee'}
+                    component={NavLink}
+                    to={'/app/team/employee'}
                     style={{textDecoration: 'none', color: 'inherit'}}
                 >
                     <CardHeader

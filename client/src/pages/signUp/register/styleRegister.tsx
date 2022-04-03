@@ -11,8 +11,10 @@ const styleRegister = makeStyles((theme) => ({
         margin: 'auto',
         marginBottom: '15px',
     },
-    signIn: {
-        color: '#7d7979'
+    captcha:{
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '20px 0'
     }
 }));
 

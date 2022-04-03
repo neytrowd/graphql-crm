@@ -21,6 +21,17 @@ export const SIGN_IN = gql`
     }${MUTATION_RESPONSE}
 `
 
+export const TOKEN_IS_VALID = gql`
+    mutation TokenIsValid($token: String!){
+        tokenIsValid(token: $token){
+            ...Response,
+            data {
+                userId
+            }
+        }
+    }${MUTATION_RESPONSE}
+`
+
 export const GOOGLE_SIGN_IN = gql`
     mutation GoogleSignIn($data: GoogleUser!){
         googleSignIn(data: $data){

@@ -42,14 +42,18 @@ const Verify: React.FC = () => {
     }, [data])
 
     const verify = async (data: IVerificationForm) => {
-        let res = await verifyAccount({variables: {data}})
-        let {success, message} = res.data.verifyAccount;
+        try {
+            let res = await verifyAccount({variables: {data}})
+            let {success, message} = res.data.verifyAccount;
 
-        if (success) {
-            toast.info(message)
-            navigate('/auth/signIn')
-        } else {
-            toast.error(message)
+            if (success) {
+                toast.info(message)
+                navigate('/auth/signIn')
+            } else {
+                toast.error(message)
+            }
+        } catch (err: unknown) {
+            (err instanceof Error) && console.log(err.message)
         }
     }
 
@@ -57,13 +61,9 @@ const Verify: React.FC = () => {
         setSubmitting,
         resetForm
     }: { setSubmitting: Function, resetForm: Function }) => {
-        try {
-            verify(value)
-            setSubmitting(false)
-            resetForm()
-        } catch (err: unknown) {
-            (err instanceof Error) && console.log(err.message)
-        }
+        verify(value)
+        setSubmitting(false)
+        resetForm()
     }
 
     return (
@@ -75,36 +75,57 @@ const Verify: React.FC = () => {
                     initialValues={form.email ? form : initialState} onSubmit={onSubmit}
                     enableReinitialize={true}
                     validationSchema={Yup.object({
-                        jobDesc: Yup.string().required('Job title is required'),
-                        email: Yup.string().email('Invalid email address').required('Email is required'),
-                        password: Yup.string().min(5, 'Must be least 5 symbols').required('Password is required'),
+                        jobDesc: Yup.string()
+                            .required('Job title is required'),
+                        email: Yup.string()
+                            .email('Invalid email address')
+                            .required('Email is required'),
+                        password: Yup.string()
+                            .min(5, 'Must be least 5 symbols')
+                            .required('Password is required'),
                     })}
                 >
                     <Form>
                         <Field
-                            component={TextField} name="jobDesc"
-                            variant="outlined" required fullWidth label="Job title"
+                            component={TextField}
+                            name="jobDesc"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            label="Job title"
                             margin="normal"
                         />
                         <Field
-                            component={TextField} name="email"
-                            variant="outlined" required fullWidth label="Email Address"
-                            margin="normal" disabled={true}
+                            component={TextField}
+                            name="email"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            label="Email Address"
+                            margin="normal"
+                            disabled={true}
                         />
                         <Field
-                            component={TextField} name="password"
-                            variant="outlined" required fullWidth label="Password"
-                            type="password" margin="normal"
+                            component={TextField}
+                            name="password"
+                            variant="outlined"
+                            required
+                            fullWidth
+                            label="Password"
+                            type="password"
+                            margin="normal"
                         />
-                        <Box marginTop={2} display={'flex'} justifyContent="center">
+                        <Box className={classes.captcha}>
                             <ReCAPTCHA
                                 sitekey={RECAPTChA_SITE_KEY}
-                                onChange={()=>setSubmitDisable(false)}
+                                onChange={() => setSubmitDisable(false)}
                             />
                         </Box>
-                        <Box marginTop={3} marginBottom={2}>
+                        <Box className={classes.submit}>
                             <Button
-                                type="submit" fullWidth variant="contained" color="primary"
+                                type="submit" fullWidth
+                                variant="contained"
+                                color="primary"
                                 disabled={submitDisable}
                             >
                                 Verify account
@@ -113,11 +134,6 @@ const Verify: React.FC = () => {
                     </Form>
                 </Formik>
             </div>
-            <Box marginTop={3} textAlign='center'>
-                <NavLink to='/auth/signIn' className={classes.signIn}>
-                    Already have an account? Log in
-                </NavLink>
-            </Box>
         </Container>
     );
 }
