@@ -15,7 +15,6 @@ import {SIGN_IN} from "../../../apollo/queries/authQueries";
 import {useMutation} from "@apollo/client";
 import {toast} from 'react-toastify';
 import ReCAPTCHA from "react-google-recaptcha";
-import {RECAPTChA_SITE_KEY} from "../../../constants";
 import {useLoginUser} from "../../../service/auth";
 
 const initialState: ILogin = {
@@ -97,7 +96,7 @@ const Login: React.FC = () => {
                         />
                         <Box className={classes.captcha}>
                             <ReCAPTCHA
-                                sitekey={RECAPTChA_SITE_KEY}
+                                sitekey={`${process.env.REACT_APP_RECAPTChA_SITE_KEY}`}
                                 onChange={() => setSubmitDisable(false)}
                             />
                         </Box>

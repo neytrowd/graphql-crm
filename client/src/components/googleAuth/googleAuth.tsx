@@ -1,6 +1,5 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import {GOOGLE_LOGIN_CLIENT_ID} from "../../constants";
 import Box from "@mui/material/Box";
 import {useMutation} from "@apollo/client";
 import {GOOGLE_SIGN_IN} from "../../apollo/queries/authQueries";
@@ -9,7 +8,6 @@ import {authActions} from "../../store/slices/authSlice";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../store";
 import styleGoogleAuth from "./styleGoogleAuth";
-import {instanceOf} from "graphql/jsutils/instanceOf";
 
 const GoogleAuth: React.FC = () => {
     const classes = styleGoogleAuth();
@@ -40,7 +38,7 @@ const GoogleAuth: React.FC = () => {
     return (
         <Box className={classes.box}>
             <GoogleLogin
-                clientId={GOOGLE_LOGIN_CLIENT_ID}
+                clientId={`${process.env.REACT_APP_GOOGLE_LOGIN_CLIENT_ID}`}
                 buttonText="Login with Google"
                 onSuccess={handleLogin}
                 onFailure={handleLogin}

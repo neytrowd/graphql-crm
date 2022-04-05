@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import {NavLink, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Logo from "../../../assets/images/logo.png";
 import {Field, Form, Formik} from 'formik';
 import {TextField} from 'formik-mui'
@@ -15,7 +15,6 @@ import {IVerificationForm} from "../../../types";
 import {LOAD_VERIFICATION_DATA, VERIFY_ACCOUNT} from "../../../apollo/queries/verifyQueries";
 import {toast} from 'react-toastify';
 import ReCAPTCHA from "react-google-recaptcha";
-import {RECAPTChA_SITE_KEY} from "../../../constants";
 
 const initialState: IVerificationForm = {
     jobDesc: '',
@@ -117,7 +116,7 @@ const Verify: React.FC = () => {
                         />
                         <Box className={classes.captcha}>
                             <ReCAPTCHA
-                                sitekey={RECAPTChA_SITE_KEY}
+                                sitekey={`${process.env.REACT_APP_RECAPTChA_SITE_KEY}`}
                                 onChange={() => setSubmitDisable(false)}
                             />
                         </Box>

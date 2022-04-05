@@ -46,7 +46,7 @@ const authResolver = {
             let decoded = jwt.decode(token, process.env.JWT_SECRET)
 
             if (!decoded) return {
-                code: 200, success: true, message: 'Token is invalid!',
+                code: 400, success: false, message: 'Token is invalid!',
             }
 
             return {

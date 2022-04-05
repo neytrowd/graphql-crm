@@ -7,7 +7,7 @@ const teamResolver = {
             let currentUser = await Employee.find({_id: id})
 
             if (!currentUser.emailVerified) return {
-                code: 200, success: true, message: 'You are not verified!',
+                code: 400, success: false, message: 'You are not verified!',
             }
 
             let employees = await Employee.findMany({
@@ -27,7 +27,7 @@ const teamResolver = {
             let currentUser = await Employee.find({_id: id})
 
             if (!currentUser.emailVerified) return {
-                code: 200, success: true, message: 'You are not verified!',
+                code: 400, success: false, message: 'You are not verified!',
             }
 
             let employees = await Employee.findMany({

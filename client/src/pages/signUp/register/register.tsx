@@ -14,7 +14,6 @@ import {useMutation} from "@apollo/client";
 import {SIGN_UP} from "../../../apollo/queries/authQueries";
 import {IRegister, IRegisterForm} from "../../../types";
 import {toast} from 'react-toastify';
-import {RECAPTChA_SITE_KEY} from "../../../constants";
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const initialState: IRegisterForm = {
@@ -118,7 +117,7 @@ const Register: React.FC = () => {
                         />
                         <Box className={classes.captcha}>
                             <ReCAPTCHA
-                                sitekey={RECAPTChA_SITE_KEY}
+                                sitekey={`${process.env.REACT_APP_RECAPTChA_SITE_KEY}`}
                                 onChange={() => setSubmitDisable(false)}
                             />
                         </Box>
